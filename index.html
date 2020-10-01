@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rock Paper Scissors Game</title>
+	<script>
+		//score array
+		var scores = [0,0]
+		//maps values of rock/paper/scissors from 0,1,2 to 2,4,16
+		var convertor = {0:2, 1:4, 2:16}
+		//rps object maps Key=playerChoice/computerChoice to result of game (0:tie, 1:player wins, -1:computer wins). 
+		var rps = {1:0, 0.5:-1, 0.125:1, 2:1, 0.25:-1, 8:-1, 4:1}
+		//human language mapper (used to display message at end of game)
+		var humanLanguage = {2:"Rock", 4:"Paper", 16:"Scissors"}
+		
+		function play(p){
+			//generate random between 1 and 3 then map it to 2/4/16
+			var c = convertor[Math.floor(Math.random() * 3)];
+		
+			var whatPlayed="Player plays ";
+			whatPlayed = whatPlayed.concat(humanLanguage[p]);
+			whatPlayed = whatPlayed.concat(", Computer plays ");
+			whatPlayed = whatPlayed.concat(humanLanguage[c]);
+		
+			var decision;
+				switch (rps[p/c]){
+					  case 0:
+						   decision = ", It's a Tie! ";
+						  break;
+					case 1:
+							decision = ", Player Wins! ";
+							scores[0]++;
+							break;
+						case -1:
+							decision = ", Computer Wins! ";
+							scores[1]++;
+							break;  
+				}
+			document.getElementById("Display").innerHTML = whatPlayed;
+			document.getElementById("Display").innerHTML += decision;
+			document.getElementById("Display").innerHTML += ", Scoreboard: ";
+			document.getElementById("Display").innerHTML += scores;
+			
+		}
+	</script>
+</head>
+
+<body>
+	<h2>Simple Rock Paper Scissors Game</h2>
+	<input type=button onClick="play(2)" value="Rock">
+	<input type=button onClick="play(4)" value="Paper">
+	<input type=button onClick="play(16)" value="Scissors">
+	<div id="Display"> </div>
+	
+</body>
+</html>
+
+
