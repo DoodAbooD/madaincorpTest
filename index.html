@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Rock Paper Scissors Game</title>
+
 	<script>
 		//score array
 		var scores = [0,0]
@@ -18,6 +19,10 @@
 			//generate random between 1 and 3 then map it to 2/4/16
 			var c = convertor[Math.floor(Math.random() * 3)];
 		
+			//change src of images to show what played
+			document.getElementById("playerHand").src = p==2?"img/rock.png":p==4?"img/paper.png":"img/scissors.png";
+			document.getElementById("computerHand").src = c==2?"img/rockC.png":c==4?"img/paperC.png":"img/scissorsC.png";
+			
 			var whatPlayed="Player plays ";
 			whatPlayed = whatPlayed.concat(humanLanguage[p]);
 			whatPlayed = whatPlayed.concat(", Computer plays ");
@@ -25,32 +30,95 @@
 		
 			var decision;
 				switch (rps[p/c]){
-					case 0:
-						decision = ", It's a Tie! ";
-						break;
+					  case 0:
+						   decision = "It's a Tie! ";
+						  break;
 					case 1:
-						decision = ", Player Wins! ";
-						scores[0]++;
-						reak;
-					case -1:
-						decision = ", Computer Wins! ";
-						scores[1]++;
-						break;  
+							decision = "Player Wins! ";
+							scores[0]++;
+							break;
+						case -1:
+							decision = "Computer Wins! ";
+							scores[1]++;
+							break;  
 				}
 			document.getElementById("Display").innerHTML = whatPlayed;
-			document.getElementById("Display").innerHTML += decision;
-			document.getElementById("Display").innerHTML += ", Scoreboard: ";
+			document.getElementById("Display").innerHTML += "<br>" + decision;
+			document.getElementById("Display").innerHTML += "<br> Scoreboard: ";
 			document.getElementById("Display").innerHTML += scores;
 			
 		}
 	</script>
+
+	<style>
+				.button {
+			border: none;
+			padding: 16px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			
+			}
+
+			.buttonRock {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #4CAF50;
+			}
+
+			.buttonRock:hover {
+			background-image: url("img/rock.png");;
+			background-repeat: no-repeat; 
+  			background-size: contain; 
+			color:transparent;
+			}
+
+			.buttonPaper {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #008CBA;
+			}
+
+			.buttonPaper:hover {
+			background-image: url("img/paper.png");;
+			background-repeat: no-repeat; 
+  			background-size: contain; 
+			color:transparent;
+			}
+
+			.buttonScissors {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #f44336;
+			}
+
+			.buttonScissors:hover {
+			background-image: url("img/scissors.png");;
+			background-repeat: no-repeat; 
+  			background-size: contain; 
+			color:transparent;
+			}
+
+
+			}
+	</style>
+
+
 </head>
 
 <body>
-	<h2>Simple Rock Paper Scissors Game</h2>
-	<input type=button onClick="play(2)" value="Rock">
-	<input type=button onClick="play(4)" value="Paper">
-	<input type=button onClick="play(16)" value="Scissors">
+	<div class="midForm"> 
+		<h2>Rock Paper Scissors Player VS Computer</h2>
+		<h4>Choose your hand:</h4>
+		<input type=button onClick="play(2)" value="Rock" class="button buttonRock">
+		<input type=button onClick="play(4)" value="Paper" class="button buttonPaper">
+		<input type=button onClick="play(16)" value="Scissors" class="button buttonScissors">
+	</div>
+	<br>
+	<img id="playerHand"><img id="computerHand">
 	<div id="Display"> </div>
 	
 </body>
