@@ -25,17 +25,17 @@
 		
 			var decision;
 				switch (rps[p/c]){
-					  case 0:
-						   decision = ", It's a Tie! ";
-						  break;
+					case 0:
+						decision = ", It's a Tie! ";
+						break;
 					case 1:
-							decision = ", Player Wins! ";
-							scores[0]++;
-							break;
-						case -1:
-							decision = ", Computer Wins! ";
-							scores[1]++;
-							break;  
+						decision = ", Player Wins! ";
+						scores[0]++;
+						reak;
+					case -1:
+						decision = ", Computer Wins! ";
+						scores[1]++;
+						break;  
 				}
 			document.getElementById("Display").innerHTML = whatPlayed;
 			document.getElementById("Display").innerHTML += decision;
